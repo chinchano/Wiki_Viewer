@@ -1,5 +1,43 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+  background-color: #DFA06E;
+  height: 100%;
+  text-align: center;
 }
+
+form p{
+  background: white;
+  border-radius: 5px;
+  width: 350px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+#headerTitle {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-family: 'Roboto', sans-serif;
+  color: #FBFAE6;
+}
+.searchQuery {
+	border-radius: 5px;
+  border-width: 0;
+  padding-left: 5px;
+  width: 300px;
+  height: 30px;
+}
+
+
+.randomArticle a {
+	text-transform: uppercase;
+	color: #FBFAE6;
+	text-decoration: none;
+
+
+}
+
+.topsection {
+  margin-top: 5%;
+}
+
+
+
+

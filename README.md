@@ -1,1 +1,1 @@
-Wikipedia Viewer created with React.js
+Wikipedia Viewer using React.js and Wikipedia API
