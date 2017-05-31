@@ -4,13 +4,6 @@ body {
   text-align: center;
 }
 
-form p{
-  background: white;
-  border-radius: 5px;
-  width: 350px;
-  margin: 0 auto;
-  margin-bottom: 20px;
-}
 #headerTitle {
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -18,6 +11,7 @@ form p{
   color: #FBFAE6;
 }
 .searchQuery {
+  margin-bottom: 10px;
 	border-radius: 5px;
   border-width: 0;
   padding-left: 5px;
@@ -26,7 +20,8 @@ form p{
 }
 
 
-.randomArticle a {
+.search-box-container a {
+
 	text-transform: uppercase;
 	color: #FBFAE6;
 	text-decoration: none;

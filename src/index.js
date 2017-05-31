@@ -33,10 +33,10 @@ class InputForm extends React.Component{
   render(){
     return(
        <div className="search-box-container">
-         <form onSubmit={this.handleSubmit.bind(this)}>
-      <input type="text" placeholder="Search for something..." className="searchQuery" ref="search" onChange={this.handleInputChange.bind(this)} value={this.state.searchTerm}/>
-          </form>
-     <a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank" id="random" className="randomArticle">Random article</a>
+        <form onSubmit={this.handleSubmit.bind(this)}>
+          <input type="text" placeholder="Search for something..." className="searchQuery" ref="search" onChange={this.handleInputChange.bind(this)} value={this.state.searchTerm}/>
+        </form>
+        <a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank" id="random" className="randomArticle">Random article</a>
       </div>
     );
   }
