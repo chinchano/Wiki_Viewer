@@ -34,28 +34,12 @@ class InputForm extends React.Component{
     return(
        <div className="search-box-container">
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <input type="text" placeholder="Search for something..." className="searchQuery" ref="search" onChange={this.handleInputChange.bind(this)} value={this.state.searchTerm}/>
+          <input type="text" placeholder="Search..." className="searchQuery" onChange={this.handleInputChange.bind(this)} value={this.state.searchTerm}/>
         </form>
-        <a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank" id="random" className="randomArticle">Random article</a>
+        <a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank" className="randomArticle">Random article</a>
       </div>
     );
   }
-}
-
-//ResultList Component
-class ResultList extends React.Component{
- render(){
-   var results = this.props.results[1].map((result, index) =>{
-         return(
-          <div key = {index}>
-            <h3>{this.props.results[1][index]}</h3>
-            <p>{this.props.results[2][index]}</p>
-            <a href={this.props.results[3][index]}>Link</a>
-          </div>
-          );                                 
-      });
-   return(<div>{results}</div>)
- }
 }
 
 //Wiki Componenet
@@ -63,7 +47,9 @@ class WikipediaViewer extends React.Component{
   constructor(){
     super();
     this.state = { 
-      results: [] //Initialize results state
+      results: [
+        '',[],[],[]
+      ] //Initialize results state
     };
   }
   handleSearch(searchTerm){
@@ -79,13 +65,31 @@ class WikipediaViewer extends React.Component{
     return(
       <div className="wrapper">
         <InputForm onSearch={this.handleSearch.bind(this)} />
-        <ul>
-          
-        </ul>
+        <ResultList results={this.state.results}/>
       </div>
     );
   }
 }
+
+//ResultList Component
+class ResultList extends React.Component{
+ render(){
+   var results = this.props.results[1].map((result, index) =>{
+         return(
+          <a href={this.props.results[3][index]}>
+            <div key = {index}>
+              <h3>{this.props.results[1][index]}</h3>
+              <p>{this.props.results[2][index]}</p>
+            </div>
+          </a>
+          );                                 
+      });
+   return(<div>{results}</div>)
+ }
+}
+
+
+
 ReactDOM.render(<WikipediaViewer />, document.getElementById('app'));
 //  render: function(){
 //    return(
