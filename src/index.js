@@ -5,6 +5,7 @@ import './index.css';
 import axios from 'axios';
 
 
+//Input Component
 class InputForm extends React.Component{
   constructor(){
     super();
@@ -19,31 +20,73 @@ class InputForm extends React.Component{
     });
   }
   
+  handleSubmit(e){
+    e.preventDefault();
+    let searchTerm = this.state.searchTerm.trim();
+    
+    if(!searchTerm){
+      return;
+    }
+    
+    this.props.onSearch(searchTerm);
+ }
   render(){
     return(
-       <div className="row mainsection">
-            <div className="col-md-4 col-md-offset-4">
-            <form>
-              <p>
-               <input type="text" className="searchQuery" ref="search" onKeyDown={this.handleUserInput}/>
-               <span className="glyphicon glyphicon-search"></span>
-              </p>
-            </form>
-              <div className="randomArticle">
-          <a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank" id="random">Random article</a>
-            </div>
-     
-        </div>
-          </div>
-    )
+       <div className="search-box-container">
+         <form onSubmit={this.handleSubmit.bind(this)}>
+      <input type="text" placeholder="Search for something..." className="searchQuery" ref="search" onChange={this.handleInputChange.bind(this)} value={this.state.searchTerm}/>
+          </form>
+     <a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank" id="random" className="randomArticle">Random article</a>
+      </div>
+    );
   }
-
-
-
-
-
-
 }
+
+//ResultList Component
+class ResultList extends React.Component{
+ render(){
+   var results = this.props.results[1].map((result, index) =>{
+         return(
+          <div key = {index}>
+            <h3>{this.props.results[1][index]}</h3>
+            <p>{this.props.results[2][index]}</p>
+            <a href={this.props.results[3][index]}>Link</a>
+          </div>
+          );                                 
+      });
+   return(<div>{results}</div>)
+ }
+}
+
+//Wiki Componenet
+class WikipediaViewer extends React.Component{
+  constructor(){
+    super();
+    this.state = { 
+      results: [] //Initialize results state
+    };
+  }
+  handleSearch(searchTerm){
+    //API call
+     axios.get('https://en.wikipedia.org//w/api.php?action=opensearch&format=json&origin=*&search='+searchTerm+'&limit=10').then(response => {
+       console.log(response.data)
+         this.setState({
+           results: response.data
+         });
+     })
+  }
+  render(){
+    return(
+      <div className="wrapper">
+        <InputForm onSearch={this.handleSearch.bind(this)} />
+        <ul>
+          
+        </ul>
+      </div>
+    );
+  }
+}
+ReactDOM.render(<WikipediaViewer />, document.getElementById('app'));
 //  render: function(){
 //    return(
 //      <div className="singleItems">
