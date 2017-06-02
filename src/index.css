@@ -4,7 +4,9 @@ body {
   text-align: center;
 }
 
-
+p{
+  margin: 20px;
+}
 
 a{
   color: black;
@@ -32,7 +34,7 @@ a:hover{
 .results {
     width: 100%;
   
-  padding: 15px;
+  padding: 50px;
  background: #DFA06E;
   border-left: 5px solid transparent;
   border-radius: 5px;
